@@ -6,5 +6,14 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="white">#ffffff</color>
+    <color name="blue">#007aff</color>
+    <color name="gray">#b5b5b5</color>
+    <color name="label_color_light_primary">#000000</color>
+    <color name="primary_500">#6200ee</color>
+    <color name="on_primary_high_emphasis">#ffffff</color>
+    <color name="on_surface_high_emphasis">#de000000</color>
+    <color name="surface_overlay">#14212121</color>
+    <color name="dark">#111226</color>
 </resources>

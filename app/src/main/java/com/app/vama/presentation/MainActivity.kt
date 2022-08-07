@@ -1,7 +1,8 @@
-package com.app.vama
+package com.app.vama.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.app.vama.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

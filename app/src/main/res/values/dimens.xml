@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="half">4dp</dimen>
+    <dimen name="small">8dp</dimen>
+    <dimen name="small_and_a_half">12dp</dimen>
+    <dimen name="medium">16dp</dimen>
+    <dimen name="big">24dp</dimen>
+    <dimen name="large">32dp</dimen>
+
+    <dimen name="album_card_size">173dp</dimen>
+    <dimen name="album_card_corner_radius">27dp</dimen>
+
+
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_small_and_a_half">12sp</dimen>
+    <dimen name="text_h1">34sp</dimen>
+    <dimen name="toolbar_elevation">3dp</dimen>
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="50">
+
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@id/rv_list"
+            motion:touchAnchorSide="top" />
+
+        <KeyFrameSet></KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start" />
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/ll_expanted_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Layout
+                android:layout_marginTop="0dp"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+            <PropertySet android:alpha="0.9" />
+
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Layout motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/tv_title_collapsed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Layout motion:layout_constraintBottom_toTopOf="parent" />
+        </Constraint>
+
+    </ConstraintSet>
+</MotionScene>
