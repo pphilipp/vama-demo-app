@@ -18,7 +18,11 @@
             android:background="@color/white"
             android:paddingStart="@dimen/small_and_a_half"
             android:paddingEnd="@dimen/small_and_a_half"
-            android:text="Top 100 title"
+            android:layout_marginTop="@dimen/big"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="@dimen/small_and_a_half"
+            android:paddingBottom="@dimen/small_and_a_half"
+            android:text="@string/top_100_albums_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,10 +56,11 @@
             <TextView
                 android:id="@+id/tv_title_expanded"
                 style="@style/Text_title"
+                android:layout_marginTop="@dimen/big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Top 100 bla bla" />
+                android:text="@string/top_100_albums_title" />
 
         </LinearLayout>
 
