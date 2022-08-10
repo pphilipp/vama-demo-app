@@ -19,7 +19,7 @@ class VamaApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@VamaApplication)
-            modules(appModule + networkModule)
+            modules(networkModule + appModule)
         }
     }
 }

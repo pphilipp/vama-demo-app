@@ -1,51 +1,39 @@
 package com.app.vama.presentation.alboms
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.app.vama.data.AlbumsRepository
+import com.app.vama.presentation.base.UiState
 import com.app.vama.presentation.model.AlbumUiModel
-import kotlinx.coroutines.flow.flow
+import com.app.vama.presentation.model.mapper.FeedResultToAlbumUiModelMapper
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
-class AlbumsViewModel : ViewModel() {
+class AlbumsViewModel(
+    private val albumsRepository: AlbumsRepository,
+    private val feedResultToAlbumUiModelMapper: FeedResultToAlbumUiModelMapper
+) : ViewModel() {
 
-    fun getMockList() = flow {
-        emit(mockList + mockList)
+    private val _uiStateFlow: MutableStateFlow<UiState> = MutableStateFlow(UiState.Idle)
+    val uiStateFlow: StateFlow<UiState> = _uiStateFlow
+
+    init {
+        getAlbums(100)
     }
 
-}
+    fun getAlbums(amount: Int) = viewModelScope.launch {
+        _uiStateFlow.value = UiState.Loading
 
-val mockList = listOf(
-    AlbumUiModel(
-        "title 1",
-        "subtitle 1",
-        "https://linuxhint.com/wp-content/uploads/2021/07/Generate-Random-String-Bash-01.png"
-    ),
-    AlbumUiModel(
-        "title 2",
-        "subtitle 2",
-        "https://linuxhint.com/wp-content/uploads/2021/07/Generate-Random-String-Bash-01.png"
-    ),
-    AlbumUiModel(
-        "title 3",
-        "subtitle 3",
-        "https://linuxhint.com/wp-content/uploads/2021/07/Generate-Random-String-Bash-01.png"
-    ),
-    AlbumUiModel(
-        "title 4",
-        "subtitle 4",
-        "https://linuxhint.com/wp-content/uploads/2021/07/Generate-Random-String-Bash-01.png"
-    ),
-    AlbumUiModel(
-        "title 5",
-        "subtitle 5",
-        "https://linuxhint.com/wp-content/uploads/2021/07/Generate-Random-String-Bash-01.png"
-    ),
-    AlbumUiModel(
-        "title 6",
-        "subtitle 6",
-        "https://linuxhint.com/wp-content/uploads/2021/07/Generate-Random-String-Bash-01.png"
-    ),
-    AlbumUiModel(
-        "title 7",
-        "subtitle 7",
-        "https://linuxhint.com/wp-content/uploads/2021/07/Generate-Random-String-Bash-01.png"
-    ),
-)
+        try {
+            val feed = albumsRepository.getAlbumsList(amount)
+            val mappedList: List<AlbumUiModel> = feed?.results?.map {
+                feedResultToAlbumUiModelMapper.map(it)
+            }?.toList() ?: emptyList()
+
+            _uiStateFlow.value = UiState.Success(mappedList)
+        } catch (e: Exception) {
+            _uiStateFlow.value = UiState.Error(e.message)
+        }
+    }
+}

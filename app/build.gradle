@@ -15,7 +15,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "SERVER_URL", "\"https://rss.applemarketingtools.com/api/v2\""
+        buildConfigField "String", "SERVER_URL", "\"https://rss.applemarketingtools.com/api/v2/\""
     }
 
     buildFeatures {

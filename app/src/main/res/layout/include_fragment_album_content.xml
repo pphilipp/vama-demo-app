@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constrain_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_album_list_xml_constrain_view_scene">
+
+        <TextView
+            android:id="@+id/tv_title_collapsed"
+            style="@style/H1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/big"
+            android:layout_marginBottom="15dp"
+            android:background="@color/white"
+            android:paddingStart="@dimen/small_and_a_half"
+            android:paddingTop="@dimen/small_and_a_half"
+            android:paddingEnd="@dimen/small_and_a_half"
+            android:paddingBottom="@dimen/small_and_a_half"
+            android:text="@string/top_100_albums_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_collapsed"
+            tools:itemCount="10"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_almum"
+            tools:orientation="vertical"
+            tools:scrollbars="vertical"
+            tools:spanCount="2" />
+
+        <LinearLayout
+            android:id="@+id/ll_expanted_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-100dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_title_expanded"
+                style="@style/Text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big"
+                android:gravity="center"
+                android:text="@string/top_100_albums_title" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>
