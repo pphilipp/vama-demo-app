@@ -2,7 +2,6 @@ package com.app.vama.data.remote.model
 
 import com.squareup.moshi.Json
 
-
 data class ResultData(
     @Json(name = "artistId") val artistId: String?,
     @Json(name = "artistName") val artistName: String?,
