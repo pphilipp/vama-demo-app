@@ -13,3 +13,7 @@ This is a master-details sample codebase.
 - Navigation library with save arguments for transfering data between screens
 - design system base line for extendability UI elements
 - 'Single source of truth' strategy was accomplished by keeping data locally and observing it from UI. 
+
+
+https://user-images.githubusercontent.com/9698643/184709565-0d845cfe-09f7-46b9-8089-b39f42978a5a.mp4
+
