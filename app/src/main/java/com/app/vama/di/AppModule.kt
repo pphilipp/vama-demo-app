@@ -4,6 +4,9 @@ import com.app.vama.data.AlbumsRepository
 import com.app.vama.data.data_source.ApiDataSource
 import com.app.vama.data.data_source.DataBaseDataSource
 import com.app.vama.data.mapper.*
+import com.app.vama.domain.GetAlbumByIdUseCase
+import com.app.vama.domain.GetAlbumsListUseCase
+import com.app.vama.domain.GetAllCashedAlbumsUseCase
 import com.app.vama.presentation.album_details.AlbumDetailsViewModel
 import com.app.vama.presentation.albums.AlbumsViewModel
 import com.app.vama.presentation.model.mapper.AlbumArtistEntityToAlbumUiModelMapper
@@ -24,13 +27,17 @@ val appModule = module {
     // Repositories
     single { AlbumsRepository(get(), get(), get(), get()) }
 
+    // domain
+    single { GetAlbumByIdUseCase(get(), get(), get()) }
+    single { GetAllCashedAlbumsUseCase(get()) }
+    single { GetAlbumsListUseCase(get()) }
+
     //presentation mappers
     single { FeedResultToAlbumUiModelMapper() }
     single { AlbumArtistEntityToAlbumUiModelMapper() }
     single { GenreEntityToGenreUiModelMapper() }
 
     // ViewModel
-    viewModel { AlbumsViewModel(get(), get(), get()) }
-    viewModel { AlbumDetailsViewModel(get(), get(), get()) }
-
+    viewModel { AlbumsViewModel(get(), get(),get(), get()) }
+    viewModel { AlbumDetailsViewModel(get()) }
 }

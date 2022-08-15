@@ -2,6 +2,7 @@ package com.app.vama.presentation.album_details
 
 import androidx.lifecycle.ViewModel
 import com.app.vama.data.AlbumsRepository
+import com.app.vama.domain.GetAlbumByIdUseCase
 import com.app.vama.presentation.base.UiState
 import com.app.vama.presentation.model.AlbumWithGenresUiModel
 import com.app.vama.presentation.model.GenreUiModel
@@ -9,12 +10,11 @@ import com.app.vama.presentation.model.mapper.AlbumArtistEntityToAlbumUiModelMap
 import com.app.vama.presentation.model.mapper.GenreEntityToGenreUiModelMapper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import java.lang.Exception
 
 class AlbumDetailsViewModel(
-    private val albumsRepository: AlbumsRepository,
-    private val albumArtistEntityToAlbumUiModelMapper: AlbumArtistEntityToAlbumUiModelMapper,
-    private val genreEntityToGenreUiModelMapper: GenreEntityToGenreUiModelMapper,
+    private val getAlbumByIdUseCase: GetAlbumByIdUseCase,
 ) : ViewModel() {
 
     private val _uiStateFlow: MutableStateFlow<UiState> = MutableStateFlow(UiState.Idle)
@@ -24,15 +24,8 @@ class AlbumDetailsViewModel(
         _uiStateFlow.value = UiState.Loading
 
         try {
-            val genreList: List<GenreUiModel> = albumsRepository.getGenreEntityByArtistId(id).map {
-                genreEntityToGenreUiModelMapper.map(it)
-            }
-            val albumWithGenresUiModel = AlbumWithGenresUiModel(
-                albumUiModel = albumArtistEntityToAlbumUiModelMapper.map(
-                    from = albumsRepository.getAlbumById(id)
-                ),
-                genreList = genreList
-            )
+            val params = GetAlbumByIdUseCase.GetAlbumByIdUseCaseParams(id = id)
+            val albumWithGenresUiModel = getAlbumByIdUseCase.execute(params).first()
 
             _uiStateFlow.value = UiState.Success(albumWithGenresUiModel)
         } catch (e: Exception) {

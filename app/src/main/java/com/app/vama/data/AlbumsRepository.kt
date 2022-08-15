@@ -18,7 +18,6 @@ class AlbumsRepository(
     suspend fun getAlbumsList(amount: Int): FeedData? =
         apiDataSource.fetchAlbums(amount)
             ?.also { feedData ->
-
                 feedData.results
                     ?.forEach { resultEntity ->
                         dataBaseDataSource.saveResultEntity(

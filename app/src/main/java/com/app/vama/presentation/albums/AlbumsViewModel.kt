@@ -2,20 +2,23 @@ package com.app.vama.presentation.albums
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.vama.data.AlbumsRepository
+import com.app.vama.domain.GetAlbumsListUseCase
+import com.app.vama.domain.GetAllCashedAlbumsUseCase
 import com.app.vama.presentation.base.UiState
 import com.app.vama.presentation.model.AlbumUiModel
 import com.app.vama.presentation.model.mapper.AlbumArtistEntityToAlbumUiModelMapper
 import com.app.vama.presentation.model.mapper.FeedResultToAlbumUiModelMapper
 import kotlinx.coroutines.flow.*
+import  com.app.vama.domain.execute
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.net.UnknownHostException
 
 class AlbumsViewModel(
-    private val albumsRepository: AlbumsRepository,
     private val feedResultToAlbumUiModelMapper: FeedResultToAlbumUiModelMapper,
-    private val albumArtistEntityToAlbumUiModelMapper: AlbumArtistEntityToAlbumUiModelMapper
+    private val albumArtistEntityToAlbumUiModelMapper: AlbumArtistEntityToAlbumUiModelMapper,
+    private val getAllCashedAlbumsUseCase: GetAllCashedAlbumsUseCase,
+    private val getAlbumsListUseCase: GetAlbumsListUseCase
 ) : ViewModel() {
 
     private val _uiStateFlow: MutableStateFlow<UiState> = MutableStateFlow(UiState.Idle)
@@ -38,7 +41,7 @@ class AlbumsViewModel(
 
             _uiStateFlow.value = UiState.Success(mappedList)
         } catch (e: Exception) {
-            when(e) {
+            when (e) {
                 is UnknownHostException -> {
                     _uiStateFlow.value = UiState.Success(getAllFromLocal())
                 }
@@ -49,17 +52,18 @@ class AlbumsViewModel(
     }
 
     private suspend fun getAllFromLocal(): List<AlbumUiModel> =
-        albumsRepository.getCashedAllAlbums()
+        getAllCashedAlbumsUseCase.execute().first()
             .map {
                 albumArtistEntityToAlbumUiModelMapper.map(it)
             }
 
     private suspend fun fetchRemoteAndSaveLocally(amount: Int): List<AlbumUiModel> =
-        albumsRepository.getAlbumsList(amount)?.results
+        getAlbumsListUseCase.execute(
+            params = GetAlbumsListUseCase.Params(amount = amount)
+        ).first()?.results
             ?.map {
                 feedResultToAlbumUiModelMapper.map(it)
             }
             ?.toList()
             ?: emptyList()
-
 }
