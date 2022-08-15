@@ -5,4 +5,5 @@ data class AlbumUiModel(
     val title: String,
     val subTitle: String,
     val thumbnailUrl: String,
+    val artistUrl: String,
 )

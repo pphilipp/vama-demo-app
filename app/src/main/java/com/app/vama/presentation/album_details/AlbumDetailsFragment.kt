@@ -1,12 +1,16 @@
 package com.app.vama.presentation.album_details
 
 import android.content.Context
+import android.content.res.Resources
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Keep
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -23,9 +27,10 @@ import com.app.vama.presentation.model.AlbumWithGenresUiModel
 import com.app.vama.presentation.model.GenreUiModel
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
-import kotlinx.parcelize.Parcelize
 import kotlinx.coroutines.launch
+import kotlinx.parcelize.Parcelize
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 @Parcelize
 @Keep
@@ -49,6 +54,8 @@ class AlbumDetailsFragment : BaseFragment() {
 
         return binding
     }
+
+    override fun setLightStatusBars() = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -105,10 +112,28 @@ class AlbumDetailsFragment : BaseFragment() {
         binding.tvTitle.text = uiModel.albumUiModel.title
         binding.tvSubtitle.text = uiModel.albumUiModel.subTitle
 
+        binding.btnVisitAlbum.setOnClickListener {
+            showCustomTab(uiModel)
+        }
+
         populateGenresList(uiModel.genreList)
     }
 
+    private fun showCustomTab(uiModel: AlbumWithGenresUiModel) {
+        CustomTabsIntent.Builder().apply {
+            setDefaultColorSchemeParams(
+                CustomTabColorSchemeParams.Builder().apply {
+                    setToolbarColor(resources.getColor(R.color.blue))
+                }.build()
+            )
+        }
+            .build()
+            .launchUrl(requireContext(), Uri.parse(uiModel.albumUiModel.artistUrl))
+    }
+
     private fun populateGenresList(genreList: List<GenreUiModel>) {
+        binding.chipGroup.removeAllViews()
+
         genreList
             .map {
                 createTagChip(requireContext(), it.name)

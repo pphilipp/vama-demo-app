@@ -41,6 +41,8 @@ class AlbumListFragment : BaseFragment() {
         return binding
     }
 
+    override fun setLightStatusBars() = true
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

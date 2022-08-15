@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.VamaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -11,8 +11,6 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-        <item name="android:windowLightStatusBar">true</item>
 
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
@@ -20,4 +18,5 @@
         <item name="chipStyle">@style/Widget.App.Chip</item>
         <item name="chipCornerRadius">50dp</item>
     </style>
+
 </resources>

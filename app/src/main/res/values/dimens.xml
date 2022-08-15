@@ -6,15 +6,19 @@
     <dimen name="medium">16dp</dimen>
     <dimen name="big">24dp</dimen>
     <dimen name="large">32dp</dimen>
+    <dimen name="extra_large">47dp</dimen>
 
     <dimen name="album_card_size">173dp</dimen>
     <dimen name="album_card_corner_radius">27dp</dimen>
 
+    <dimen name="btn_horizontal_padding">16sp</dimen>
 
+    <dimen name="text_small">12sp</dimen>
     <dimen name="text_medium">16sp</dimen>
     <dimen name="text_body_1">18sp</dimen>
     <dimen name="text_small_and_a_half">12sp</dimen>
     <dimen name="text_h1">34sp</dimen>
     <dimen name="toolbar_elevation">3dp</dimen>
+    <dimen name="button_corner_radius">10dp</dimen>
 
 </resources>

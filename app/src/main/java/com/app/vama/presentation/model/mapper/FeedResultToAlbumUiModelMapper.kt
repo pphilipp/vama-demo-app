@@ -9,6 +9,7 @@ class FeedResultToAlbumUiModelMapper : UiMapper<ResultData, AlbumUiModel> {
         albumId = from.id ?: "",
         title = from.name ?: "",
         subTitle = from.artistName ?: "",
-        thumbnailUrl = from.artworkUrl100 ?: ""
+        thumbnailUrl = from.artworkUrl100 ?: "",
+        artistUrl = from.artistUrl ?: ""
     )
 }

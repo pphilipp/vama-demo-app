@@ -63,6 +63,33 @@
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
+        <TextView
+            android:id="@+id/tv_copyright"
+            style="@style/Body_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium"
+            android:layout_marginEnd="@dimen/medium"
+            android:layout_marginBottom="@dimen/big"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            app:layout_constraintBottom_toTopOf="@+id/btn_visit_album"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@tools:sample/lorem/random" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_visit_album"
+            style="@style/BasePrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/extra_large"
+            android:text="@string/btn_visit_the_album"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <include
             android:id="@+id/include_progress"
             layout="@layout/include_progress_fullscreen"
