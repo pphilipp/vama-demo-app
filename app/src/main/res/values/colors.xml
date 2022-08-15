@@ -15,5 +15,6 @@
     <color name="on_primary_high_emphasis">#ffffff</color>
     <color name="on_surface_high_emphasis">#de000000</color>
     <color name="surface_overlay">#14212121</color>
+    <color name="text_body">#8e8e93</color>
     <color name="dark">#111226</color>
 </resources>

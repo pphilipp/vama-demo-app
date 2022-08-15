@@ -5,11 +5,31 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/albumListFragment">
 
-
     <fragment
         android:id="@+id/albumListFragment"
-        android:name="com.app.vama.presentation.alboms.AlbumListFragment"
+        android:name="com.app.vama.presentation.albums.AlbumListFragment"
         android:label="AlbumListFragment"
-        tools:layout="@layout/fragment_album_list" />
+        tools:layout="@layout/fragment_album_list" >
+
+        <action
+            app:popUpToInclusive="false"
+            android:id="@+id/action_albumListFragment_to_albumDetailsFragment"
+            app:destination="@id/albumDetailsFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumDetailsFragment"
+        android:name="com.app.vama.presentation.album_details.AlbumDetailsFragment"
+        android:label="AlbumDetailsFragment"
+        app:popUpTo="@+id/albumListFragment"
+        tools:layout="@layout/fragment_album_details">
+
+        <argument
+            android:name="albumId"
+            app:argType="com.app.vama.presentation.album_details.ArgumentAlbumDetailsFragment" />
+
+    </fragment>
 
 </navigation>

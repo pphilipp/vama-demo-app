@@ -1,11 +1,9 @@
-package com.app.vama.presentation.alboms
+package com.app.vama.presentation.albums
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout.DEBUG_SHOW_NONE
 import androidx.constraintlayout.motion.widget.MotionLayout.DEBUG_SHOW_PATH
 import androidx.core.view.isVisible
@@ -14,13 +12,16 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.vama.BuildConfig
 import com.app.vama.R
 import com.app.vama.databinding.FragmentAlbumListBinding
+import com.app.vama.presentation.album_details.ArgumentAlbumDetailsFragment
 import com.app.vama.presentation.base.BaseFragment
 import com.app.vama.presentation.base.UiState
 import com.app.vama.presentation.model.AlbumUiModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,7 +59,7 @@ class AlbumListFragment : BaseFragment() {
                     when (state) {
                         is UiState.Error<*> -> {
                             hideProgress()
-                            Toast.makeText(requireContext(), state.error.toString(), Toast.LENGTH_SHORT).show()
+                            showRetrySnackBar()
                         }
                         UiState.Idle -> {
                             hideProgress()
@@ -76,14 +77,36 @@ class AlbumListFragment : BaseFragment() {
         }
     }
 
+    private fun showRetrySnackBar() = Snackbar.make(
+        binding.root,
+        getString(R.string.retry_snack_bar_message),
+        Snackbar.LENGTH_LONG
+
+    ).apply {
+        setAction(getString(R.string.action_refresh)) {
+            viewModel.getAlbums(100, true)
+        }
+    }.show()
+
     private fun doOnSuccess(feed: List<AlbumUiModel>) {
         val albumAdapter = AlbumAdapter {
-            Toast.makeText(requireContext(), it.title, Toast.LENGTH_SHORT).show()
+            navigateToDetails(it)
         }
         binding.includeContent.apply {
             rvList.adapter = albumAdapter
             rvList.layoutManager = GridLayoutManager(requireContext(), 2)
             albumAdapter.submitList(feed)
+        }
+    }
+
+    private fun navigateToDetails(albumUiModel: AlbumUiModel) {
+        findNavController().apply {
+            val action = AlbumListFragmentDirections.actionAlbumListFragmentToAlbumDetailsFragment(
+                ArgumentAlbumDetailsFragment(
+                    albumId = albumUiModel.albumId
+                )
+            )
+            navigate(action)
         }
     }
 

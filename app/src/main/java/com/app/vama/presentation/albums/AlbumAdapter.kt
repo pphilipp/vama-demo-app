@@ -1,4 +1,4 @@
-package com.app.vama.presentation.alboms
+package com.app.vama.presentation.albums
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
