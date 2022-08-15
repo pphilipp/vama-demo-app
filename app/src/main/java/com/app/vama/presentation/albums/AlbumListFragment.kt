@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.app.vama.BuildConfig
 import com.app.vama.R
 import com.app.vama.databinding.FragmentAlbumListBinding
@@ -97,6 +98,7 @@ class AlbumListFragment : BaseFragment() {
         binding.includeContent.apply {
             rvList.adapter = albumAdapter
             rvList.layoutManager = GridLayoutManager(requireContext(), 2)
+            albumAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             albumAdapter.submitList(feed)
         }
     }

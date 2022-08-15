@@ -18,10 +18,14 @@ class AlbumsRepository(
     suspend fun getAlbumsList(amount: Int): FeedData? =
         apiDataSource.fetchAlbums(amount)
             ?.also { feedData ->
+
                 feedData.results
                     ?.forEach { resultEntity ->
                         dataBaseDataSource.saveResultEntity(
-                            resultDataToResultEntityMapper.map(resultEntity)
+                            resultDataToResultEntityMapper.map(resultEntity).copy(
+                                copyright = feedData.copyright ?: EMPTY_STRING,
+                                updated = feedData.updated ?: EMPTY_STRING
+                            )
                         )
 
                         resultEntity.genres?.map {

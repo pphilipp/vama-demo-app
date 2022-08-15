@@ -64,6 +64,21 @@
         </HorizontalScrollView>
 
         <TextView
+            android:id="@+id/tv_updated"
+            style="@style/Body_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium"
+            android:layout_marginEnd="@dimen/medium"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            app:layout_constraintBottom_toTopOf="@+id/tv_copyright"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
             android:id="@+id/tv_copyright"
             style="@style/Body_2"
             android:layout_width="match_parent"
@@ -73,7 +88,7 @@
             android:layout_marginBottom="@dimen/big"
             android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="2"
+            android:maxLines="1"
             app:layout_constraintBottom_toTopOf="@+id/btn_visit_album"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

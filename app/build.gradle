@@ -50,8 +50,8 @@ dependencies {
         exclude group: "com.android.support"
     }
     implementation 'androidx.browser:browser:1.4.0'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"

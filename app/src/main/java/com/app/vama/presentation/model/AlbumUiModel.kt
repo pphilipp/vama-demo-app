@@ -6,4 +6,6 @@ data class AlbumUiModel(
     val subTitle: String,
     val thumbnailUrl: String,
     val artistUrl: String,
+    val copyright: String,
+    val updated: String
 )

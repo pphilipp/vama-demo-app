@@ -10,6 +10,8 @@ class AlbumArtistEntityToAlbumUiModelMapper {
         title = from.name,
         subTitle = from.artistName,
         thumbnailUrl = from.artworkUrl100,
-        artistUrl = from.artistUrl
+        artistUrl = from.artistUrl,
+        copyright = from.copyright,
+        updated = from.updated
     )
 }

@@ -18,5 +18,7 @@ data class AlbumArtistEntity(
     @ColumnInfo(name = "kind") val kind: String = EMPTY_STRING,
     @ColumnInfo(name = "name") val name: String = EMPTY_STRING,
     @ColumnInfo(name = "releaseDate") val releaseDate: String = EMPTY_STRING,
-    @ColumnInfo(name = "url") val url: String = EMPTY_STRING
+    @ColumnInfo(name = "url") val url: String = EMPTY_STRING,
+    @ColumnInfo(name = "copyright") val copyright: String = EMPTY_STRING,
+    @ColumnInfo(name = "updated") val updated: String = EMPTY_STRING
 )

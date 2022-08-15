@@ -111,6 +111,8 @@ class AlbumDetailsFragment : BaseFragment() {
 
         binding.tvTitle.text = uiModel.albumUiModel.title
         binding.tvSubtitle.text = uiModel.albumUiModel.subTitle
+        binding.tvCopyright.text = uiModel.albumUiModel.copyright
+        binding.tvUpdated.text = uiModel.albumUiModel.updated
 
         binding.btnVisitAlbum.setOnClickListener {
             showCustomTab(uiModel)
